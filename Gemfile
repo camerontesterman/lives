@@ -5,7 +5,8 @@ ruby '2.6.0'
 
 # Custom gems
 gem 'devise'
-
+gem 'bootstrap', '~> 4.3.1'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'

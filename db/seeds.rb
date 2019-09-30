@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'yaml'
+
+c = YAML.load_file Rails.root.join('db', 'countries', 'countries.yml')
+
+c["countries"].each do |country_code, name|
+  Country.create([
+    name:         name,
+    country_code: country_code
+  ])
+end

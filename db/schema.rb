@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_020730) do
+ActiveRecord::Schema.define(version: 2019_09_30_022533) do
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "country_code", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_countries_on_name", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
