@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@rails/webpacker": "^4.0.7",
+    "fetch": "^1.1.0",
     "ol": "^6.0.0"
   },
   "devDependencies": {
