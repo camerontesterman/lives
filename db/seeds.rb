@@ -25,9 +25,35 @@ countries = [
 ]
 
 countries.each do |country|
+  define_method(country[:name].downcase.to_sym) do ||
+    Country.find_by(name: country[:name])
+  end
+
   Country.create(
     name: country[:name],
     country_code: country[:country_code],
     population: country[:population]
+  )
+end
+
+cities = [
+  # Afghanistan
+  { name: 'Kabul',          population: 4273200, country_id: afghanistan.id },
+  { name: 'Kandahar',       population: 614300,  country_id: afghanistan.id },
+  { name: 'Herat',          population: 556200,  country_id: afghanistan.id },
+  { name: 'Mazar-i-Sharif', population: 469200,  country_id: afghanistan.id },
+  { name: 'Kunduz',         population: 356500,  country_id: afghanistan.id },
+  # Albania
+  { name: 'Tirana',         population: 418495,  country_id: albania.id },
+  { name: 'Durrës',         population: 113249,  country_id: albania.id},
+  # Australia
+  { name: 'Sydney',         population: 5230330, country_id: australia.id }
+]
+
+cities.each do |city|
+  City.create(
+    name: city[:name],
+    population: city[:population],
+    country_id: city[:country_id]
   )
 end
