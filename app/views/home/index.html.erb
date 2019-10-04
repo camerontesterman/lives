@@ -1,12 +1,23 @@
 <body>
-  <%= render "nav" %>
-  <h1>Lives</h1>
-  <div id="map"></div>
-  <%= javascript_pack_tag 'map' %>
-  <%= javascript_pack_tag 'lives' %>
-  <div id="playerInfo">
-    <h2 id="countryName"></h2>
+   <!-- <%= render "nav" %> -->
+  <div class="container-fluid bg-dark fill">
+    <h1 class="text-light">Lives</h1>
+    <div class="row">
+      <div class="col-sm">
+        <div id="map"></div>
+      </div>
+      <div class="col-sm">
+        <%= render "player_info" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button id="newGame">New Game</button>
+        <button id="savGame">Save</button>
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+      </div>
+    </div>
   </div>
-  <button id="newGame">New Game</button>
 </body>
 

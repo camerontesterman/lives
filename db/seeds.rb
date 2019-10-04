@@ -38,16 +38,64 @@ end
 
 cities = [
   # Afghanistan
-  { name: 'Kabul',          population: 4273200, country_id: afghanistan.id },
-  { name: 'Kandahar',       population: 614300,  country_id: afghanistan.id },
-  { name: 'Herat',          population: 556200,  country_id: afghanistan.id },
-  { name: 'Mazar-i-Sharif', population: 469200,  country_id: afghanistan.id },
-  { name: 'Kunduz',         population: 356500,  country_id: afghanistan.id },
+  { 
+    name: 'Kabul',
+    population: 4273200,
+    country_id: afghanistan.id,
+    latitude: 34.3131,
+    longitude: 69.1042
+  },
+  { 
+    name: 'Kandahar',
+    population: 614300,
+    country_id: afghanistan.id,
+    latitude: 31.37,
+    longitude: 65.43
+  },
+  { 
+    name: 'Herat',
+    population: 556200,
+    country_id: afghanistan.id,
+    latitude: 34.2031,
+    longitude: 62.1211
+  },
+  { 
+    name: 'Mazar-i-Sharif',
+    population: 469200,
+    country_id: afghanistan.id,
+    latitude: 36.42,
+    longitude: 67.07
+  },
+  { 
+    name: 'Kunduz',
+    population: 356500,  
+    country_id: afghanistan.id,
+    latitude: 36.4343,
+    longitude: 68.525
+  },
   # Albania
-  { name: 'Tirana',         population: 418495,  country_id: albania.id },
-  { name: 'Durrës',         population: 113249,  country_id: albania.id},
+  { 
+    name: 'Tirana',
+    population: 418495,
+    country_id: albania.id,
+    latitude: 41.1944,
+    longitude: 19.4904
+  },
+  { 
+    name: 'Durrës',
+    population: 113249,
+    country_id: albania.id,
+    latitude: 41.19,
+    longitude: 19.27
+  },
   # Australia
-  { name: 'Sydney',         population: 5230330, country_id: australia.id }
+  { 
+    name: 'Sydney',
+    population: 5230330,
+    country_id: australia.id,
+    latitude: -33.5154,
+    longitude: 151.1234
+  }
 ]
 
 cities.each do |city|
