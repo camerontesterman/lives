@@ -30,6 +30,7 @@ map.addLayer(markerVectorLayer);
 const newGameButton = document.getElementById("newGame");
 const countryName = document.getElementById("countryName");
 const cityName = document.getElementById("cityName")
+const age = document.getElementById("age")
 
 const lives = {
   initialize: () => {
@@ -37,12 +38,18 @@ const lives = {
       event.preventDefault();
       console.log("new game pressed")
       lives.generateCharacter();
-      lives.setCountry();
-      lives.setCity();
     });
   },
   generateCharacter: () => {
     console.log("generating character")
+    lives.setLocation();
+    lives.setAge();
+  },
+  setAge: () => {
+    age.innerHTML = lives.player.age
+  },
+  setLocation: () => {
+    lives.setCountry()
   },
   setCountry: () => {
     lives.fetchCountries();
@@ -53,32 +60,72 @@ const lives = {
       .then(data => lives.selectCountry(data))
   },
   updateMap: () => {
-    map.getView().setCenter(ol.proj.transform([67.7100, 33.9391], 'EPSG:4326', 'EPSG:3857'));
+    map.removeLayer(markerVectorLayer);
+
+    console.log(`lon: ${lives.player.longitude}`)
+    console.log(`lat: ${lives.player.latitude}`)
+    
+    marker = new ol.Feature({
+      geometry: new ol.geom.Point(
+        ol.proj.fromLonLat([lives.player.longitude, lives.player.latitude])
+      ),
+    });
+    
+    vectorSource = new ol.source.Vector({
+      features: [marker]
+    });
+    
+    markerVectorLayer = new ol.layer.Vector({
+      source: vectorSource,
+    });
+    
+    map.addLayer(markerVectorLayer);
   },
   selectCountry: (countries) => {
     const country = countries[Math.floor(Math.random()*countries.length)];
+    console.log(`Select Country: ${country["id"]}`)
     countryName.innerHTML = country["name"]
     lives.player.country = country["name"]
+    lives.player.country_id = country["id"]
+    lives.setCity();
   },
   setCity: () => {
     lives.fetchCities()
   },
   fetchCities: () => {
-    fetch("http://localhost:3000/cities")
+    console.log(`Country: ${lives.player.country}`)
+    console.log(`Country ID: ${lives.player.country_id}`)
+    fetch(`http://localhost:3000/cities?country_id=${lives.player.country_id}`)
       .then(response => response.json())
       .then(data => lives.selectCity(data))
   },
   selectCity: (cities) => {
     const city = cities[Math.floor(Math.random()*cities.length)];
-
+    cityName.innerHTML = city["name"]
+    lives.player.city = city["name"]
+    lives.player.city_id = city["id"]
+    lives.player.latitude = city["latitude"]
+    lives.player.longitude = city["longitude"]
+    console.log(`lon: ${city["longitude"]}`)
+    console.log(`lat: ${city["latitude"]}`)
+    lives.updateMap()
   },
   player: {
     firstName: "",
     lastName: "",
+    fatherFirstName: "",
+    fatherLastName: "",
+    motherFirstName: "",
+    motherLastName: "",
     career: "",
     health: 100,
     spouse: "",
     country: "",
+    country_id: "",
+    city: "",
+    city_id: "",
+    latitude: 40.7127,
+    longitude: -74.006,
     age: 0
   }
 }

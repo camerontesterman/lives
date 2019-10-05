@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_04_032330) do
+ActiveRecord::Schema.define(version: 2019_10_05_032808) do
 
 # Could not dump table "cities" because of following StandardError
 #   Unknown type 'real' for column 'latitude'
@@ -19,6 +19,19 @@ ActiveRecord::Schema.define(version: 2019_10_04_032330) do
     t.string "name", null: false
     t.string "country_code", null: false
     t.integer "population", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "countries_languages", id: false, force: :cascade do |t|
+    t.integer "country_id", null: false
+    t.integer "language_id", null: false
+    t.index ["country_id", "language_id"], name: "index_countries_languages_on_country_id_and_language_id"
+    t.index ["language_id", "country_id"], name: "index_countries_languages_on_language_id_and_country_id"
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

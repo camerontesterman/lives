@@ -1,10 +1,11 @@
 class CitiesController < ApplicationController
+  before_action :set_country, only: [:index]
   before_action :set_city, only: [:show, :edit, :update, :destroy]
 
   # GET /cities
   # GET /cities.json
   def index
-    @cities = City.all
+    render json: @country.cities
   end
 
   # GET /cities/1
@@ -62,6 +63,10 @@ class CitiesController < ApplicationController
   end
 
   private
+    def set_country
+      @country = Country.find(params[:country_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_city
       @city = City.find(params[:id])

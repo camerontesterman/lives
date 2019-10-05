@@ -1,0 +1,10 @@
+---
+- name: Afghanistan
+  country_code: AF
+  population: 32225560
+- name: 'Albania',
+  country_code: 'AL',
+  population: 2821977
+- name: 'Australia',
+  country_code: 'AU',
+  population: 25519100
